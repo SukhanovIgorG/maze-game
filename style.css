@@ -1,0 +1,73 @@
+@import "./assets/fonts/fonts.css";
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: '8bit', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: skyblue;
+  background-image: url("./assets/images/background.jpg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: repeat-x;
+  height: fit-content;
+  min-height: 100vh;  
+}
+
+.gameContainer {
+  margin: 0 auto;
+  padding: 10%;
+  width: fit-content;
+  color: white;
+}
+
+.remote {
+  display: flex;
+  gap: 20px;
+}
+.remote input {
+  width: 50px;
+}
+.remote button {
+  width: 100px;
+}
+.statistics {
+  display: flex;
+}
+.pause {
+  font-size: x-large;
+  font-weight: 900;
+  text-align: center;
+  width: 100%;
+}
+
+.scoreHeader {
+  width: 100px;
+}
+.score {
+  width: 100px;
+}
+
+.instructions {
+  cursor: pointer;
+  height: 50px;
+  overflow-y: hidden;
+  padding: 10px;
+  border: solid;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+}
+
+.instructions:hover {
+  height: fit-content;
+}

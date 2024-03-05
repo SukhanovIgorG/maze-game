@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "8bit";
+  src:
+    local("8bit Regular"),
+    url("./8-bit/8bitOperatorPlus-Regular.ttf") format('truetype');
+  font-weight: normal;
+}
