@@ -1,5 +1,9 @@
 @import "./assets/fonts/fonts.css";
 
+:root {
+  --button-size: 40px;
+}
+
 h1,h2,h3,h4,h5,h6,p {
   margin: 0;
   padding: 0;
@@ -19,7 +23,8 @@ body {
   background-size: cover;
   background-repeat: repeat-x;
   height: fit-content;
-  min-height: 100vh;  
+  min-height: 100dvh;
+  width: 100vw;
 }
 
 .gameContainer {
@@ -68,6 +73,35 @@ body {
   color: white;
 }
 
+.instructions h2 {
+  text-align: center;
+}
+
 .instructions:hover {
   height: fit-content;
+}
+
+.controllerRight {
+  position: absolute;
+  right: 10%;
+  bottom: 105;
+  width: calc(var(--button-size) * 3);
+  height: calc(var(--button-size) * 3);
+  display: flex;
+  flex-wrap: wrap;
+}
+.controllerLeft {
+  position: absolute;
+  left: 10%;
+  bottom: 105;
+  width: calc(var(--button-size) * 3);
+  height: calc(var(--button-size) * 3);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.key {
+  width: var(--button-size);
+  height: var(--button-size);
+  text-align: center;
 }

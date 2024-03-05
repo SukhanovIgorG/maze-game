@@ -30,10 +30,10 @@ function setPause() {
 }
 function unsetPause() {
   gameRun = true;
-  pauseBanner.textContent =  "";
+  pauseBanner.textContent = "";
 }
 
-export function pauseToggle() { 
+export function pauseToggle() {
   gameRun ? setPause() : unsetPause();
 }
 
@@ -112,6 +112,9 @@ function drawMap() {
     }
   }
 }
+function drawInfo() {
+  scoreElement.textContent = player.score;
+}
 
 function loop() {
   const lp = requestAnimationFrame(loop);
@@ -119,6 +122,7 @@ function loop() {
   drawMap();
   drawExit();
   drawPlayer();
+  drawInfo();
   if ((player.X == finish.X) && (player.Y == finish.Y) && player.score > 0) {
     animation();
     cancelAnimationFrame(lp);
@@ -126,62 +130,68 @@ function loop() {
   }
 };
 
-document.addEventListener('keydown', function (e) {
+
+export function moveRight() {
   if (gameRun) {
-    if (e.which === 38) {
-      if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '🟥')) {
-        playSound(soundStep);
-        player.Y -= 1;
-        player.score += 1;
-      }
-    };
-
-    // стрелка вниз
-    if (e.which === 40) {
-      if (((player.Y + 1) <= rowsSize - 1) && (getField(player.X, player.Y + 1) != '🟥')) {
-        playSound(soundStep);
-        player.Y += 1;
-        player.score += 1;
-      }
-    };
-
-    // стрелка влево
-    if (e.which === 37) {
-      if (((player.X - 1) >= 0) && (getField(player.X - 1, player.Y) != '🟥')) {
-        playSound(soundStep);
-        player.X -= 1;
-        player.score += 1;
-      }
-    };
-    // стрелка вправо
-    if (e.which === 39) {
-      if (((player.X + 1) <= columnsSize - 1) && (getField(player.X + 1, player.Y) != '🟥')) {
-        playSound(soundStep);
-        player.X += 1;
-        player.score += 1;
-      }
-    };
-    scoreElement.textContent = player.score;
+    if (((player.X + 1) <= columnsSize - 1) && (getField(player.X + 1, player.Y) != '🟥')) {
+      playSound(soundStep);
+      player.X += 1;
+      player.score += 1;
+    }
   } else {
-    if (e.which === 38) {
-      heightInput.value = +heightInput.value + 10
-    };
-
-    // стрелка вниз
-    if (e.which === 40) {
-      heightInput.value = +heightInput.value > 13 ? +heightInput.value - 10 : +heightInput.value
-    };
-
-    // стрелка влево
-    if (e.which === 37) {
-      widthInput.value = +widthInput.value > 13 ? +widthInput.value - 10 : +widthInput.value
-    };
-    // стрелка вправо
-    if (e.which === 39) {
-      widthInput.value = +widthInput.value + 10
-
-    };
+    widthInput.value = +widthInput.value + 10
   }
+}
+
+export function moveLeft() {
+  if (gameRun) {
+    if (((player.X - 1) >= 0) && (getField(player.X - 1, player.Y) != '🟥')) {
+      playSound(soundStep);
+      player.X -= 1;
+      player.score += 1;
+    }
+  } else {
+    widthInput.value = +widthInput.value > 13 ? +widthInput.value - 10 : +widthInput.value
+  }
+}
+
+export function moveDown() {
+  if (gameRun) {
+    if (((player.Y + 1) <= rowsSize - 1) && (getField(player.X, player.Y + 1) != '🟥')) {
+      playSound(soundStep);
+      player.Y += 1;
+      player.score += 1;
+    }
+  } else {
+    heightInput.value = +heightInput.value > 13 ? +heightInput.value - 10 : +heightInput.value
+  }
+}
+
+export function moveUp() {
+  if (gameRun) {
+    if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '🟥')) {
+      playSound(soundStep);
+      player.Y -= 1;
+      player.score += 1;
+    }
+  } else {
+    heightInput.value = +heightInput.value + 10
+  }
+}
+
+document.addEventListener('keydown', function (e) {
+    if (e.which === 38) {
+      moveUp();
+    };
+    if (e.which === 40) {
+      moveDown();
+    };
+    if (e.which === 37) {
+      moveLeft();
+    };
+    if (e.which === 39) {
+      moveRight();
+    };
 });
 
 // запускаем игру

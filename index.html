@@ -29,18 +29,41 @@
       <p class="pause" id="pause"></p>
     </div>
     <canvas></canvas>
-    <div class="pyro">
-      <div class="before"></div>
-      <div class="after"></div>
-    </div>
-    <div class="instructions">
-      <h2>Управление</h2>
-      <p>space - пауза</p>
-      <p>⬆ - вверх</p>
-      <p>⬇ - вниз</p>
-      <p>⬅ - влево</p>
-      <p>➡ - вправо</p>
-    </div>
+  </div>
+  <div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+  </div>
+  <div class="instructions">
+    <h2>Управление</h2>
+    <p>Space - Пауза</p>
+    <p>Enter - Старт</p>
+    <p>⬆ - вверх / выбор высоты</p>
+    <p>⬇ - вниз / выбор высоты</p>
+    <p>⬅ - влево / выбор ширины</p>
+    <p>➡ - вправо / выбор ширины</p>
+  </div>
+  <div class="controllerLeft" id="controllerLeft">
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="keySP">P</button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="key" disabled></button>
+  </div>
+  <div class="controllerRight" id="controllerRight">
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="keyUp">⬆</button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="keyLeft">⬅</button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="keyRight">➡</button>
+    <button class="key" id="key" disabled></button>
+    <button class="key" id="keyDown">⬇</button>
+    <button class="key" id="key" disabled></button>
   </div>
   <script src="scripts/generateMaze.js" type="module"></script>
   <script src="scripts/drawMaze.js" type="module"></script>
