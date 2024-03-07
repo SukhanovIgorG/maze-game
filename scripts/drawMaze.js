@@ -1,4 +1,4 @@
-import { generateMaze } from "./generateMaze.js";
+import { generateMaze, getHelp } from "./generateMaze.js";
 import { animation, animationStop } from "./animation.js";
 import { colors } from "./settings.js"
 import { playSound } from "./utils.js"
@@ -12,10 +12,12 @@ const context = canvas.getContext('2d');
 const widthInput = document.querySelector('#width');
 const heightInput = document.querySelector('#height');
 const startButton = document.querySelector('#startButton')
+const helpButton = document.querySelector('#helpButton')
 const pauseBanner = document.querySelector('#pause')
 
 let columnsSize, rowsSize, map, tractorsNumber
 let gameRun = false;
+let help = false;
 const fieldSize = 10;
 const padding = 10;
 var player = {};
@@ -30,15 +32,19 @@ function setPause() {
 }
 function unsetPause() {
   gameRun = true;
-  pauseBanner.textContent =  "";
+  pauseBanner.textContent = "";
+}
+function toggleHelp() {
+  help = !help;
 }
 
-export function pauseToggle() { 
+export function pauseToggle() {
   gameRun ? setPause() : unsetPause();
 }
 
 export function start() {
   animationStop();
+  help = false;
   columnsSize = +widthInput.value > 3 ? +widthInput.value : 3;
   rowsSize = +heightInput.value > 3 ? +heightInput.value : 3;
   tractorsNumber = Number((columnsSize + rowsSize) / 10).toFixed();
@@ -49,8 +55,8 @@ export function start() {
   player.Y = 0;
   player.score = 0;
   scoreElement.textContent = player.score;
-  finish.X = +columnsSize - 1;
-  finish.Y = +rowsSize - 1;
+  finish.X = +columnsSize - 1 - shiftX/fieldSize;
+  finish.Y = +rowsSize - 1 - shiftY/fieldSize;
   unsetPause();
   loop();
 }
@@ -99,11 +105,25 @@ function drawPlayer() {
   context.rect(padding + player.X * fieldSize, padding + player.Y * fieldSize, fieldSize, fieldSize);
   context.fill();
 }
+function drawHelp() {
+  const path = getHelp(map);
+  if (path) {
+    const steps = path.split(",");
+    for (let step of steps) {
+      let row = step.split("-")[0];
+      let col = step.split("-")[1];
+      context.fillStyle = 'green';
+      context.beginPath();
+      context.rect(padding + col * fieldSize, padding + row * fieldSize, fieldSize, fieldSize);
+      context.fill();
+    }
+  }
+}
 
 function drawMap() {
   for (let x = 0; x < columnsSize; x++) {
     for (let y = 0; y < rowsSize; y++) {
-      if (getField(x, y) === '🟥') {
+      if (getField(x, y) === '1') {
         context.fillStyle = colors.wall;
         context.beginPath();
         context.rect(padding + x * fieldSize, padding + y * fieldSize, fieldSize, fieldSize);
@@ -117,6 +137,7 @@ function loop() {
   const lp = requestAnimationFrame(loop);
   init();
   drawMap();
+  if (help ) drawHelp();
   drawExit();
   drawPlayer();
   if ((player.X == finish.X) && (player.Y == finish.Y) && player.score > 0) {
@@ -129,7 +150,7 @@ function loop() {
 document.addEventListener('keydown', function (e) {
   if (gameRun) {
     if (e.which === 38) {
-      if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '🟥')) {
+      if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '1')) {
         playSound(soundStep);
         player.Y -= 1;
         player.score += 1;
@@ -138,7 +159,7 @@ document.addEventListener('keydown', function (e) {
 
     // стрелка вниз
     if (e.which === 40) {
-      if (((player.Y + 1) <= rowsSize - 1) && (getField(player.X, player.Y + 1) != '🟥')) {
+      if (((player.Y + 1) <= rowsSize - 1) && (getField(player.X, player.Y + 1) != '1')) {
         playSound(soundStep);
         player.Y += 1;
         player.score += 1;
@@ -147,7 +168,7 @@ document.addEventListener('keydown', function (e) {
 
     // стрелка влево
     if (e.which === 37) {
-      if (((player.X - 1) >= 0) && (getField(player.X - 1, player.Y) != '🟥')) {
+      if (((player.X - 1) >= 0) && (getField(player.X - 1, player.Y) != '1')) {
         playSound(soundStep);
         player.X -= 1;
         player.score += 1;
@@ -155,7 +176,7 @@ document.addEventListener('keydown', function (e) {
     };
     // стрелка вправо
     if (e.which === 39) {
-      if (((player.X + 1) <= columnsSize - 1) && (getField(player.X + 1, player.Y) != '🟥')) {
+      if (((player.X + 1) <= columnsSize - 1) && (getField(player.X + 1, player.Y) != '1')) {
         playSound(soundStep);
         player.X += 1;
         player.score += 1;
@@ -179,10 +200,9 @@ document.addEventListener('keydown', function (e) {
     // стрелка вправо
     if (e.which === 39) {
       widthInput.value = +widthInput.value + 10
-
     };
   }
 });
-
 // запускаем игру
 startButton.addEventListener('click', start)
+helpButton.addEventListener('click', toggleHelp)
