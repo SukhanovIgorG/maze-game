@@ -11,7 +11,7 @@ function getLen(len) {
   return isEven(len) ? len - 1 : len
 }
 
-export function getHelp(data) {
+export function getHelp(data, player) {
   const graph = {};
   const height = Array.isArray(data) ? getLen(data.length) : 0;
   const width = Array.isArray(data[0]) ? getLen(data[0].length) : 0;
@@ -32,7 +32,7 @@ export function getHelp(data) {
   };
 
   let check = {};
-  const start = '0-0'
+  const start = `${isEven(player.Y) ? player.Y : player.Y + 1}-${isEven(player.X) ? player.X : player.X + 1}`;
   const finish = String(height - 1) + "-" + String(width - 1)
   const RES = [];
   function getPath(path, name) {
@@ -63,7 +63,7 @@ function painInConsole(map, cols, rows) {
     console.log('1' + s + '1');
   }
   console.log('1' + d + '1');
-  console.log('_________________ :>> ');
+  console.log('_________________');
 }
 
 

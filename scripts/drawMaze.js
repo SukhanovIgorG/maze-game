@@ -55,8 +55,8 @@ export function start() {
   player.Y = 0;
   player.score = 0;
   scoreElement.textContent = player.score;
-  finish.X = +columnsSize - 1 - shiftX/fieldSize;
-  finish.Y = +rowsSize - 1 - shiftY/fieldSize;
+  finish.X = +columnsSize - 1 - shiftX / fieldSize;
+  finish.Y = +rowsSize - 1 - shiftY / fieldSize;
   unsetPause();
   loop();
 }
@@ -106,10 +106,11 @@ function drawPlayer() {
   context.fill();
 }
 function drawHelp() {
-  const path = getHelp(map);
+  const path = getHelp(map, player);
   if (path) {
-    const steps = path.split(",");
-    for (let step of steps) {
+    const pathArr = path.split(",");
+    const cropPath = pathArr.slice(0, 5)
+    for (let step of cropPath) {
       let row = step.split("-")[0];
       let col = step.split("-")[1];
       context.fillStyle = 'green';
@@ -137,7 +138,7 @@ function loop() {
   const lp = requestAnimationFrame(loop);
   init();
   drawMap();
-  if (help ) drawHelp();
+  if (help) drawHelp();
   drawExit();
   drawPlayer();
   if ((player.X == finish.X) && (player.Y == finish.Y) && player.score > 0) {
@@ -149,6 +150,7 @@ function loop() {
 
 document.addEventListener('keydown', function (e) {
   if (gameRun) {
+    help = false;
     if (e.which === 38) {
       if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '1')) {
         playSound(soundStep);
