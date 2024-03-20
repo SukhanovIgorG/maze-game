@@ -133,19 +133,31 @@ export function generateMaze(columnsNumber, rowsNumber, tractorsNumber) {
       const directs = [];
       if (tractor.x > 0) {
         directs.push('left');
+        // directs.push({x: -1, y: 0});
       };
       if (tractor.x < columnsNumber - 2) {
         directs.push('right');
+        // directs.push({ x: 1, y: 0 });
       };
       if (tractor.y > 0) {
         directs.push('up');
+        // directs.push({ x: 0, y: -1 });
       };
 
       if (tractor.y < rowsNumber - 2) {
         directs.push('down');
+        // directs.push({ x: 0, y: 1 });
       };
 
       const direct = getRandomFrom(directs);
+
+
+      // if (getField(tractor.x + direct.x*2, tractor.y + direct.y*2) === '1') {
+      //   setField(tractor.x + direct.x, tractor.y + direct.y, '0');
+      //   setField(tractor.x + direct.x*2, tractor.y + direct.y*2, '0');
+      //   tractor.x += direct.x*2;
+      //   tractor.y += direct.y*2;
+      // };
 
       switch (direct) {
         case 'left':
