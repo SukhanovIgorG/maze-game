@@ -1,4 +1,4 @@
-@import "./assets/fonts/fonts.css";
+@import "/assets/fonts/fonts.css";
 
 h1,h2,h3,h4,h5,h6,p {
   margin: 0;
@@ -14,7 +14,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: skyblue;
-  background-image: url("./assets/images/background.jpg");
+  background-image: url("/assets/images/background.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: repeat-x;
