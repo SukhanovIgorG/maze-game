@@ -16,7 +16,6 @@ const staticFiles = [
 ];
 
 self.addEventListener('install', async (e) => {
-  console.log('install files cashed :>> ');
   const cache = await caches.open(staticCacheName);
   // await cache.addAll(staticFiles); // TODO: не работает, а хотелось бы
 
@@ -32,10 +31,11 @@ self.addEventListener('install', async (e) => {
   await cache.add('/styles/show.css');
   await cache.add('/styles/style.css');
   await cache.add('/assets/images/background.jpg');
+  await cache.add('/assets/sounds/step.mp3');
+  await cache.add('/assets/sounds/win.mp3');
 });
 
 self.addEventListener('activate', async (e) => {
-  console.log('activate :>> ');
   const cacheNames = await caches.keys();
   await Promise.all(
     cacheNames

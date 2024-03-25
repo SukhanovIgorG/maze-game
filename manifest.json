@@ -7,6 +7,21 @@
   "start_url": ".",
   "icons": [
     {
+      "src": "/assets/icons/16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
       "src": "/assets/icons/96.png",
       "sizes": "96x96",
       "type": "image/png"
