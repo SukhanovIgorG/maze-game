@@ -1,6 +1,5 @@
 const staticCacheName = 's-cache-1';
 const dynamicCacheName = 'd-cache-1';
-console.log('sw :>> ');
 
 const staticFiles = [
   '/index.html',
