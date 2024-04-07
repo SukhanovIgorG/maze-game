@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <link rel="icon" href="/assets/icons/32.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, 
+  initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Лабиринт</title>
+  <link rel="stylesheet" href="./styles/default.css">
+  <link rel="stylesheet" href="./styles/maze.css">
+  <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
+  <div class="gameContainer">
+
+    <div class="remote">
+      <label>
+        Ширина
+        <input id="width" type="number" value="35" step="10" min="3">
+      </label>
+      <label>
+        Высота
+        <input id="height" type="number" value="15" step="10" min="3">
+      </label>
+      <button id="startButton">Старт</button>
+      <button id="helpButton">Подсказка</button>
+    </div>
+    <div class="statistics">
+      <div>
+        <p class="scoreHeader">Шаги</p>
+        <p class="score">0</p>
+      </div>
+      <p class="pause" id="pause"></p>
+    </div>
+    <canvas></canvas>
+    <div class="pyro">
+      <div class="before"></div>
+      <div class="after"></div>
+    </div>
+    <div class="instructions">
+      <h2>Управление</h2>
+      <p>space - пауза</p>
+      <p>⬆ - вверх</p>
+      <p>⬇ - вниз</p>
+      <p>⬅ - влево</p>
+      <p>➡ - вправо</p>
+    </div>
+  </div>
+  <script src="./index.js" type="module"></script>
+  <script src="./js/generateMaze.js" type="module"></script>
+  <script src="./js/drawMaze.js" type="module"></script>
+  <script src="./js/listeners.js" type="module"></script>
+</body>
+
+</html>
