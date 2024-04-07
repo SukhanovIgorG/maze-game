@@ -1,5 +1,5 @@
-export function playSound (url) {
+export function sound (url) {
   var audio = new Audio(url);
   audio.volume = 0.1;
-  audio.play();
-}
+  return audio
+};

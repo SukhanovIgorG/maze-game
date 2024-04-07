@@ -1,6 +1,8 @@
 Игра "Лабиринт"
+Демо GHPages - https://sukhanovigorg.github.io/maze-game/
+Firebase PWA - https://pwa-maze.web.app/
 
-Реализована на JavaScript
+Реализована на Vanilla JavaScript
 
 Функционал:
   1. Генерация лабиринта любого размера

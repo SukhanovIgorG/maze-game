@@ -1,9 +1,9 @@
 import { generateMaze, getHelp } from "./generateMaze.js";
 import { animation, animationStop } from "./animation.js";
-import { colors } from "./settings.js"
-import { playSound } from "./utils.js"
+import { colors } from "./settings.js";
+import { sound } from "./utils.js";
 
-const soundStep = "/assets/sounds/step.mp3"
+const soundStep = "../assets/sounds/step.mp3"
 
 const canvas = document.querySelector('canvas');
 const scoreElement = document.querySelector('.score');
@@ -151,9 +151,10 @@ function loop() {
 document.addEventListener('keydown', function (e) {
   if (gameRun) {
     help = false;
+    const stepSound = sound(soundStep);
     if (e.which === 38) {
       if (((player.Y - 1) >= 0) && (getField(player.X, player.Y - 1) != '1')) {
-        playSound(soundStep);
+        stepSound.play();
         player.Y -= 1;
         player.score += 1;
       }
@@ -162,7 +163,7 @@ document.addEventListener('keydown', function (e) {
     // стрелка вниз
     if (e.which === 40) {
       if (((player.Y + 1) <= rowsSize - 1) && (getField(player.X, player.Y + 1) != '1')) {
-        playSound(soundStep);
+        stepSound.play();
         player.Y += 1;
         player.score += 1;
       }
@@ -171,7 +172,7 @@ document.addEventListener('keydown', function (e) {
     // стрелка влево
     if (e.which === 37) {
       if (((player.X - 1) >= 0) && (getField(player.X - 1, player.Y) != '1')) {
-        playSound(soundStep);
+        stepSound.play();
         player.X -= 1;
         player.score += 1;
       }
@@ -179,7 +180,7 @@ document.addEventListener('keydown', function (e) {
     // стрелка вправо
     if (e.which === 39) {
       if (((player.X + 1) <= columnsSize - 1) && (getField(player.X + 1, player.Y) != '1')) {
-        playSound(soundStep);
+        stepSound.play();
         player.X += 1;
         player.score += 1;
       }
