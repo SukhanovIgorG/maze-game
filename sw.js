@@ -1,24 +1,30 @@
-const staticCacheName = 's-cache-7';
-const dynamicCacheName = 'd-cache-7';
+const staticCacheName = 's-cache-10';
+const dynamicCacheName = 'd-cache-10';
 
 const staticFiles = [
   "/index.html",
-  "/maze.html",
-  "/offline.html",
   "/404.html",
+  "/offline.html",
+  "/styles/offline.css",
   "/manifest.json",
   "/favicon.ico",
-  "/js/animation.js",
-  "/js/drawMaze.js",
-  "/js/generateMaze.js",
-  "/js/listeners.js",
-  "/js/settings.js",
-  "/js/utils.js",
   "/styles/default.css",
   "/styles/index.css",
-  "/styles/maze.css",
-  "/styles/offline.css",
-  "/styles/show.css",
+  
+  "/pages/maze/maze.html",
+  "/pages/maze/js/animation.js",
+  "/pages/maze/js/drawMaze.js",
+  "/pages/maze/js/generateMaze.js",
+  "/pages/maze/js/listeners.js",
+  "/pages/maze/js/settings.js",
+  "/pages/maze/js/utils.js",
+  "/pages/maze/maze.css",
+  "/pages/maze/show.css",
+  
+  "/pages/life/life.html",
+  "/pages/life/life.css",
+  "/pages/life/life.js",
+  
   "/assets/images/bg_index.jpg",
   "/assets/images/bg_maze.jpg",
   "/assets/images/music.svg",
@@ -37,6 +43,7 @@ const staticFiles = [
   "/assets/icons/144.png",
   "/assets/icons/256.png",
   "/assets/icons/512.png",
+
   "/sw.js",
 ];
 

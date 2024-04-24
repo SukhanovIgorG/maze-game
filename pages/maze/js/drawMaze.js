@@ -3,7 +3,7 @@ import { animation, animationStop } from "./animation.js";
 import { colors } from "./settings.js";
 import { sound } from "./utils.js";
 
-const soundStep = "../assets/sounds/step.mp3"
+const soundStep = "../../assets/sounds/step.mp3"
 
 const canvas = document.querySelector('canvas');
 const scoreElement = document.querySelector('.score');

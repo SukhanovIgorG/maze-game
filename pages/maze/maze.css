@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: skyblue;
-  background-image: url("../assets/images/bg_maze.jpg");
+  background-image: url("../../assets/images/bg_maze.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: repeat-x;

@@ -1,0 +1,12 @@
+body {
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: linear-gradient(0deg, #450035, #002500, #01011f);
+  background-repeat: repeat;
+}
