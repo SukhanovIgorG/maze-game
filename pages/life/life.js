@@ -1,7 +1,12 @@
-const height = 700;
-const width = 1000;
-const shiftX = 100;
-const shiftY = 100;
+import { forces, particlesCount, canvasParams } from "./settings.js";
+
+const startBtn = document.getElementById('start');
+const counter = document.getElementById('counter');
+
+const height = canvasParams.height;
+const width = canvasParams.width;
+const shiftX = canvasParams.shiftX;
+const shiftY = canvasParams.shiftY;
 
 const canvas = document.getElementById('canvas');
 canvas.height = height;
@@ -21,8 +26,8 @@ const particle = (x, y, c) => ({
 });
 
 
-const randomX = () => (Math.random() * (width-(shiftX*2))) + shiftX;
-const randomY = () => (Math.random() * (height-(shiftY*2))) + shiftY;
+const randomX = () => (Math.random() * (width - (shiftX * 2))) + shiftX;
+const randomY = () => (Math.random() * (height - (shiftY * 2))) + shiftY;
 
 const create = (color, number) => {
   let group = [];
@@ -41,58 +46,71 @@ const rule = (p1, p2, g) => {
     for (let j = 0; j < p2.length; j++) {
       a = p1[i]
       b = p2[j]
-
+      
       const dx = a.x - b.x;
       const dy = a.y - b.y;
-
+      
       const d = Math.sqrt(dx * dx + dy * dy);
-      if (d > 0 && d < 100) {
+      if (d > 0 && d < 150) {
         const F = g * 1 / d;
         fx += F * dx;
         fy += F * dy;
       }
     }
-    a.vx = (a.vx + fx)/2;
-    a.vy = (a.vy + fy)/2;
+    if (a.x < shiftX || a.x > width - shiftX) a.vx *= -1;
+    if (a.y < shiftY || a.y > height - shiftY) a.vy *= -1;
+    a.vx = (a.vx + fx) / 2;
+    a.vy = (a.vy + fy) / 2;
     a.x += a.vx;
     a.y += a.vy;
   };
-  if (a.x <= shiftX || a.x >= width-shiftX) { a.vx *= -1; };
-  if (a.y <= shiftY || a.y >= width-shiftY) { a.vy *= -1; };
 }
 
-const yellow = create('yellow', 200);
-const red = create('red', 200);
-const green = create('green', 200);
-const blue = create('blue', 200);
+// создаем частицы
+function start() {
+  let purple, red, green, blue;
 
-const update = () => {
-  rule(yellow, yellow, 0.15);
-  rule(yellow, red, 0.2);
-  rule(yellow, green, -0.2);
-  rule(yellow, blue, 0.3);
+  purple = create('purple', particlesCount['purple']);
+  red = create('red', particlesCount['red']);
+  green = create('green', particlesCount['green']);
+  blue = create('blue', particlesCount['blue']);
 
-  rule(red, red, -0.1);
-  rule(red, yellow, -0.01);
-  rule(red, green, -0.34);
-  rule(red, blue, -0.44);
+  counter.textContent = particles.length;
 
-  rule(green, green, -0.32);
-  rule(green, yellow, 0.34);
-  rule(green, red, -0.17);
-  rule(green, blue, -0.2);
+  const update = () => {
+    // правила ( частица1, частица2, гравитация(- притягивает, + отталкивает) )
 
+    rule(purple, purple, forces['purple']['purple']);
+    rule(purple, red, forces['purple']['red']);
+    rule(purple, green, forces['purple']['green']);
+    rule(purple, blue, forces['purple']['value']);
 
-  rule(blue, blue, 0.01);
-  rule(blue, yellow, 0);
-  rule(blue, red, 0);
-  rule(blue, green, 0);
+    rule(red, red, forces['red']['red']);
+    rule(red, purple, forces['red']['purple']);
+    rule(red, green, forces['red']['green']);
+    rule(red, blue, forces['red']['blue']);
 
-  space.clearRect(shiftX, shiftY, width-shiftX*2, height-shiftY*2);
-  draw(shiftX, shiftY, 'black', width-shiftX*2, height-shiftY*2);
-  for (let i = 0; i < particles.length; i++) {
-    draw(particles[i].x, particles[i].y, particles[i].color, 5, 5)
+    rule(green, green, forces['green']['green']);
+    rule(green, purple, forces['green']['purple']);
+    rule(green, red, forces['green']['red']);
+    rule(green, blue, forces['green']['blue']);
+
+    rule(blue, blue, forces['blue']['blue']);
+    rule(blue, purple, forces['blue']['purple']);
+    rule(blue, red, forces['blue']['red']);
+    rule(blue, green, forces['blue']['green']);
+
+    space.clearRect(shiftX, shiftY, width - shiftX * 2, height - shiftY * 2);
+    draw(shiftX, shiftY, 'black', width - shiftX * 2, height - shiftY * 2);
+    for (let i = 0; i < particles.length; i++) {
+      draw(particles[i].x, particles[i].y, particles[i].color, 5, 5)
+    };
+    requestAnimationFrame(update);
   };
-  requestAnimationFrame(update);
+  update();
 };
-update();
+
+
+startBtn.addEventListener('click', () => {
+  start();
+})

@@ -18,7 +18,7 @@ const pauseBanner = document.querySelector('#pause')
 let columnsSize, rowsSize, map, tractorsNumber
 let gameRun = false;
 let help = false;
-const fieldSize = 10;
+const fieldSize = 10; 
 const padding = 10;
 var player = {};
 var finish = {};

@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../styles/default.css">
   <link rel="stylesheet" href="./life.css">
   <title>Document</title>
 </head>
+
 <body>
-  <canvas id="canvas" width="500" height="500"></canvas>
+  <header>
+    <h1>Жизнь</h1>
+    <span>
+      <p>Организмов в мире: <span id="counter">0</span></p>
+    </span>
+    <a href="../../index.html">На главную</a>
+  </header>
+  <main>
+    <div class="controls" id="controlsParticles">
+      <label for="purple">
+        <span id="purpleCount">200</span>
+        <input type="range" min="0" max="1000" name="purple" data-color="purple" value="200" id="purple">
+      </label>
+      <label>
+        <span id="redCount">200</span>
+        <input type="range" min="0" max="1000" name="red" data-color="red" value="100" id="red">
+      </label>
+      <label>
+        <span id="greenCount">200</span>
+        <input type="range" min="0" max="1000" name="green" data-color="green" value="150" id="green">
+      </label>
+      <label>
+        <span id="blueCount">200</span>
+        <input type="range" min="0" max="1000" name="blue" data-color="blue" value="300" id="blue">
+      </label>
+      <button class="start" id="start">Добавить</button>
+    </div>
+    <div class="forces">
+      <div class="legend">
+        <p>-</p>
+        <p></p>
+        <p>+</p>
+      </div>
+      <label id="forces" data-color="purple" class="sliderContainer purple">
+        <input type="range" multiple min="-20" max="20" value="0" name="purple" data-color="purple" class="purple">
+        <input type="range" multiple min="-20" max="20" value="-11" name="red" data-color="red" class="red">
+        <input type="range" multiple min="-20" max="20" value="-2" name="green" data-color="green" class="green">
+        <input type="range" multiple min="-20" max="20" value="8" name="blue" data-color="blue" class="blue">
+      </label>
+      <label id="forces" data-color="red" class="sliderContainer red">
+        <input type="range" multiple min="-20" max="20" value="0" name="purple" data-color="purple" class="purple">
+        <input type="range" multiple min="-20" max="20" value="-11" name="red" data-color="red" class="red">
+        <input type="range" multiple min="-20" max="20" value="-2" name="green" data-color="green" class="green">
+        <input type="range" multiple min="-20" max="20" value="8" name="blue" data-color="blue" class="blue">
+      </label>
+      <label id="forces" data-color="green" class="sliderContainer green">
+        <input type="range" multiple min="-20" max="20" value="0" name="purple" data-color="purple" class="purple">
+        <input type="range" multiple min="-20" max="20" value="-11" name="red" data-color="red" class="red">
+        <input type="range" multiple min="-20" max="20" value="-2" name="green" data-color="green" class="green">
+        <input type="range" multiple min="-20" max="20" value="8" name="blue" data-color="blue" class="blue">
+      </label>
+      <label id="forces" data-color="blue" class="sliderContainer blue">
+        <input type="range" multiple min="-20" max="20" value="0" name="purple" data-color="purple" class="purple">
+        <input type="range" multiple min="-20" max="20" value="-11" name="red" data-color="red" class="red">
+        <input type="range" multiple min="-20" max="20" value="-2" name="green" data-color="green" class="green">
+        <input type="range" multiple min="-20" max="20" value="8" name="blue" data-color="blue" class="blue">
+      </label>
+      <div class="btns">
+        <button id="forcesRandom" type="button">Рандом</button>
+        <button id="forcesApply" type="button">Применить</button>
+      </div>
+    </div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </main>
   <script type="module" src="./life.js"></script>
+  <script type="module" src="./settings.js"></script>
 </body>
+
 </html>

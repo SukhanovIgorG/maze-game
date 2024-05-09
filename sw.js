@@ -1,5 +1,5 @@
-const staticCacheName = 's-cache-10';
-const dynamicCacheName = 'd-cache-10';
+const staticCacheName = 's-cache-11';
+const dynamicCacheName = 'd-cache-11';
 
 const staticFiles = [
   "/index.html",
@@ -49,7 +49,7 @@ const staticFiles = [
 
 self.addEventListener('install', async (e) => {
   const cache = await caches.open(staticCacheName);
-  await cache.addAll(staticFiles);
+  // await cache.addAll(staticFiles);
 });
 
 self.addEventListener('activate', async (e) => {
