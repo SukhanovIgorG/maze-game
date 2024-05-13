@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  width: 100%;
+  width: 100dvw;
   height: 100dvh;
   display: flex;
   flex-direction: column;

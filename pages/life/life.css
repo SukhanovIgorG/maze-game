@@ -20,7 +20,7 @@ body {
     height: 70px;
     z-index: 2;
 
-    padding: 10px 10%;
+    padding: 5% 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,59 +33,161 @@ body {
     justify-content: center;
     align-items: center;
 
-    .controls {
+    .controllers {
       position: fixed;
       width: max-content;
       left: 20px;
       top: 15%;
       overflow: hidden;
-      background-color: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       padding: 20px;
-      label {
-        width: 30px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .controller {
+        border-radius: 10px;
+        padding: 20px;
+        width: 65px;
+        height: 65px;
+        transition: all 0.5s ease-in;
       }
 
-      * {
+      .wrapper {
         display: none;
+        position: relative;
+        gap: 2vh;
       }
+      .open {
+        display: flex;
+      }
+      .particles {
+        background-color: rgba(255, 255, 255, 0.1);
 
-      &::before {
-        content: "🎹";
-        width: 30px;
-      }
-      
-      &:focus,
-      &:hover {
-        * {
+        &::before {
+          content: "🎹";
+          width: 30px;
           display: flex;
+          justify-content: center;
         }
 
-        width: 250px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+        #purpleCount::before {
+          content: "🟣";
+        }
+        #redCount::before {
+          content: "🔴";
+        }
+        #greenCount::before {
+          content: "🟢";
+        }
+        #blueCount::before {
+          content: "🔵";
+        }
       }
-      #purpleCount::before {
-        content: "🟣";
-      }
-      #redCount::before {
-        content: "🔴";
-      }
-      #greenCount::before {
-        content: "🟢";
-      }
-      #blueCount::before {
-        content: "🔵";
-      }
+      .forces {
+        background-image: linear-gradient(90deg, rgba(23, 3, 207, 0.2), rgba(253, 253, 253, 0.1), rgba(208, 2, 2, 0.2));
+        &::before {
+          content: "⚡";
+          width: 30px;
+          display: flex;
+          justify-content: center;
+        };
+        .legend {
+          height: 20px;
+          width: 200px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+
+          background-image: linear-gradient(90deg, rgba(23, 3, 207, 0.2), rgba(253, 253, 253, 0.1), rgba(208, 2, 2, 0.2));
+          border-radius: 20px;
+          position: absolute;
+          top: -40px;
+        };
+        .sliderContainer {
+          position: relative;
+          width: 200px;
+          border-radius: 20px;
+          height: 23px;
+          background-color: green;
+          z-index: 2;
+
+          input {
+            position: absolute;
+            left: 0;
+          }
+          input[type="range"] {
+            appearance: none;
+            background-color: transparent;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 98%;
+          }
+          /* трек */
+          input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 0;
+            background: none;
+            z-index: -1;
+          }
+          /* ползунок */
+          input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 1;
+            cursor: pointer;
+            border: 2px solid rgba(243, 245, 243, 0.5);
+          }
+          input[type="range"].purple::-webkit-slider-thumb {
+            color: purple;
+            background-color: purple;
+          }
+          input[type="range"].red::-webkit-slider-thumb {
+            color: red;
+            background-color: red;
+          }
+          input[type="range"].green::-webkit-slider-thumb {
+            color: green;
+            background-color: green;
+          }
+          input[type="range"].blue::-webkit-slider-thumb {
+            color: blue;
+            background-color: blue;
+          }
+        }
+        .purple {
+          background-color: rgba(128, 0, 128, 0.3);
+        };
+        .red {
+          background-color: rgba(255, 0, 0, 0.3);
+        };
+        .green {
+          background-color: rgba(0, 128, 0, 0.3);
+        };
+        .blue {
+          background-color: rgba(0, 0, 255, 0.3);
+        };
+
+        .btns {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          margin-top: 40px ;
+
+          button {
+            width: 50%;
+            text-align: center;
+          }
+        };
     }
     
     .forces {
-      position: fixed;
       width: max-content;
-      left: 20px;
-      top: 50%;
       overflow: hidden;
       background-image: linear-gradient(90deg, rgba(23, 3, 207, 0.2), rgba(253, 253, 253, 0.1), rgba(208, 2, 2, 0.2));
       border-radius: 10px;
@@ -94,137 +196,20 @@ body {
       height: 65px;
       transition: all 0.5s ease-in;
 
-      label {
-        display: none;
-      }
-      .legend {
-        visibility: hidden;
-      }
-
-      &::before {
-        content: "⚡";
-        width: 30px;
-        display: flex;
-        justify-content: center;
-      }
-      
-      &:focus,
-      &:hover {
-        label {
-          display: block;
-        }
-        .legend {
-          visibility: visible;
-        }
-        width: 250px;
-        height: 330px;
+    };
+    .open {
+      .wrapper {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
       }
-
-      &:focus::before,
-      &:hover::before {
-        content: "⚡";
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        transition: all 0.5s ease-in;
-      }
-
-      .legend {
-        height: 20px;
-        width: 200px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-
-        background-image: linear-gradient(90deg, rgba(23, 3, 207, 0.2), rgba(253, 253, 253, 0.1), rgba(208, 2, 2, 0.2));
-        border-radius: 20px;
-        position: absolute;
-        top: 22px;
-      }
-
-      .sliderContainer {
-        position: relative;
-        width: 200px;
-        border-radius: 20px;
-        height: 23px;
-        background-color: green;
-        z-index: -1;
-
-        input {
-          position: absolute;
-          left: 0;
-        }
-        input[type="range"] {
-          appearance: none;
-          background-color: transparent;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          width: 98%;
-        }
-        /* трек */
-        input[type="range"]::-webkit-slider-runnable-track {
-          width: 100%;
-          height: 0;
-          background: none;
-          z-index: -1;
-        }
-        /* ползунок */
-        input[type="range"]::-webkit-slider-thumb {
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          z-index: 1;
-          cursor: pointer;
-          border: 2px solid rgba(243, 245, 243, 0.5);
-        }
-        input[type="range"].purple::-webkit-slider-thumb {
-          color: purple;
-          background-color: purple;
-        }
-        input[type="range"].red::-webkit-slider-thumb {
-          color: red;
-          background-color: red;
-        }
-        input[type="range"].green::-webkit-slider-thumb {
-          color: green;
-          background-color: green;
-        }
-        input[type="range"].blue::-webkit-slider-thumb {
-          color: blue;
-          background-color: blue;
-        }
-      }
-      .purple {
-        background-color: rgba(128, 0, 128, 0.3);
-      };
-      .red {
-        background-color: rgba(255, 0, 0, 0.3);
-      };
-      .green {
-        background-color: rgba(0, 128, 0, 0.3);
-      };
-      .blue {
-        background-color: rgba(0, 0, 255, 0.3);
-      };
-
-      .btns {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 40px ;
-
-        button {
-          width: 50%;
-          text-align: center;
-        }
-      }
-    }
+      width: max-content;
+      max-width: 250px;
+      height: max-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    };
   };
+};
 };

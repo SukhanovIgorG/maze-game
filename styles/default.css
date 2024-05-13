@@ -14,3 +14,9 @@ a,a:visited {
   box-sizing: border-box;
   font-family: '8bit', Verdana, Geneva, Tahoma, sans-serif;
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+}

@@ -1,9 +1,18 @@
 const forcesContainers = document.querySelectorAll('#forces');
 const forcesRandomBtn = document.querySelector('#forcesRandom');
 const forcesApplyBtn = document.querySelector('#forcesApply');
-
+const controller = document.querySelectorAll('.controller');
 const controlsParticles = document.querySelector('#controlsParticles');
 const particlesItems = controlsParticles.querySelectorAll('label');
+
+const { innerHeight, innerWidth } = window.window;
+export function openCloseToggler(el) {
+  if (el.currentTarget === el.target) {
+    el.currentTarget.classList.toggle('open');
+  }
+};
+controller.forEach(el =>
+  el.addEventListener('click', openCloseToggler));
 
 export const particlesCount = {
   purple: 200,
@@ -40,10 +49,10 @@ export const forces = {
 };
 
 export const canvasParams = {
-  width: 1000,
-  height: 700,
-  shiftX: 100,
-  shiftY: 100,
+  width: innerWidth,
+  height: innerHeight - 80,
+  shiftX: 0,
+  shiftY: 0,
 }
 
 
