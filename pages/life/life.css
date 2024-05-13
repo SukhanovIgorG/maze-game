@@ -20,9 +20,8 @@ body {
     height: 70px;
     z-index: 2;
 
-    padding: 5% 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   };
 
