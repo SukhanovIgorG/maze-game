@@ -28,11 +28,11 @@ var shiftY = 0;
 
 function setPause() {
   gameRun = false;
-  pauseBanner.textContent = "Пауза";
+  pauseBanner.classList.add('active');
 }
 function unsetPause() {
   gameRun = true;
-  pauseBanner.textContent = "";
+  pauseBanner.classList.remove('active');
 }
 function toggleHelp() {
   help = !help;

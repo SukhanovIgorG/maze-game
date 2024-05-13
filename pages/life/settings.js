@@ -50,7 +50,7 @@ export const forces = {
 
 export const canvasParams = {
   width: innerWidth,
-  height: innerHeight - 80,
+  height: innerHeight - 70,
   shiftX: 0,
   shiftY: 0,
 }

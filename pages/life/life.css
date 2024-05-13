@@ -26,7 +26,7 @@ body {
   };
 
   main {
-    padding-top: 80px;
+    padding-top: 70px;
 
     display: flex;
     justify-content: center;
@@ -51,6 +51,8 @@ body {
         width: 65px;
         height: 65px;
         transition: all 0.5s ease-in;
+
+        cursor: pointer;
       }
 
       .wrapper {

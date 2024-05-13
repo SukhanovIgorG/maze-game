@@ -15,6 +15,19 @@ a,a:visited {
   font-family: '8bit', Verdana, Geneva, Tahoma, sans-serif;
 }
 
+button {
+  background-color: rgba(255, 253, 255, 0.5);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  background-color: rgba(255, 253, 255, 0.5);
+  border-radius: 20px;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   body {
     font-size: 12px;

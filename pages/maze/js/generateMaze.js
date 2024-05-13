@@ -48,7 +48,7 @@ export function getHelp(data, player) {
   return RES[0];
 };
 
-function painInConsole(map, cols, rows) {
+function paintInConsole(map, cols, rows) {
   var s, d = '';
   for (var i = 0; i < cols; i++) {
     d = d + '1';

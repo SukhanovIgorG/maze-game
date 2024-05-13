@@ -12,8 +12,14 @@
 </head>
 
 <body>
-  <div class="gameContainer">
-
+  <header>
+    <div class="header">
+      <h1>Лабиринт</h1>
+      <span>
+        <p>Очки: <span class="score">0</span></p>
+      </span>
+      <a href="../../index.html">На главную</a>
+    </div>
     <div class="remote">
       <label>
         Ширина
@@ -26,28 +32,30 @@
       <button id="startButton">Старт</button>
       <button id="helpButton">Подсказка</button>
     </div>
-    <div class="statistics">
-      <div>
-        <p class="scoreHeader">Шаги</p>
-        <p class="score">0</p>
+  </header>
+
+  <main>
+    <div class="gameContainer">
+      
+      <div class="statistics">
+        <p class="pause" id="pause">Пауза</p>
       </div>
-      <p class="pause" id="pause"></p>
+      <canvas></canvas>
+      <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+      </div>
+      <div class="instructions">
+        <div class="wrapper">
+          <p>space - пауза</p>
+          <p>⬆ - вверх</p>
+          <p>⬇ - вниз</p>
+          <p>⬅ - влево</p>
+          <p>➡ - вправо</p>
+        </div>
+      </div>
     </div>
-    <canvas></canvas>
-    <div class="pyro">
-      <div class="before"></div>
-      <div class="after"></div>
-    </div>
-    <div class="instructions">
-      <h2>Управление</h2>
-      <p>space - пауза</p>
-      <p>⬆ - вверх</p>
-      <p>⬇ - вниз</p>
-      <p>⬅ - влево</p>
-      <p>➡ - вправо</p>
-    </div>
-  </div>
-  <script src="../../index.js" type="module"></script>
+  </main>
   <script src="./js/generateMaze.js" type="module"></script>
   <script src="./js/drawMaze.js" type="module"></script>
   <script src="./js/listeners.js" type="module"></script>
